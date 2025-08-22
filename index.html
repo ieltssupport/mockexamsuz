@@ -226,6 +226,18 @@
             color: #155724;
         }
         
+        .option.correct {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
         .controls {
             display: flex;
             justify-content: space-between;
@@ -309,6 +321,94 @@
             text-align: center;
         }
         
+        .text-answer {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        
+        .analysis-container {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .analysis-question {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .analysis-question:last-child {
+            border-bottom: none;
+        }
+        
+        .answer-feedback {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .correct-answer {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .incorrect-answer {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .full-screen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .full-screen-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 60px 40px;
+            font-size: 20px;
+            line-height: 1.8;
+        }
+        
+        .close-full-screen {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         @media (max-width: 1024px) {
             .content-container {
                 flex-direction: column;
@@ -377,6 +477,7 @@
         
         <div class="content-container">
             <div class="passage-container" id="passage-1">
+                <button class="full-screen-btn" onclick="toggleFullScreen(1)"><i class="fas fa-expand"></i> Full Screen</button>
                 <h2>READING PASSAGE 1: MAKING TIME FOR SCIENCE</h2>
                 <p>Chronobiology might sound a little futuristic – like something from a science fiction novel, perhaps – but it's actually a field of study that concerns one of the oldest processes life on this planet has ever known: short-term rhythms of time and their effect on flora and fauna.</p>
                 
@@ -400,6 +501,7 @@
             </div>
             
             <div class="passage-container" id="passage-2" style="display: none;">
+                <button class="full-screen-btn" onclick="toggleFullScreen(2)"><i class="fas fa-expand"></i> Full Screen</button>
                 <h2>READING PASSAGE 2: THE TRIUNE BRAIN</h2>
                 <p>The first of our three brains to evolve is what scientists call the reptilian cortex. This brain sustains the elementary activities of animal survival such as respiration, adequate rest and a beating heart. We are not required to consciously "think" about these activities. The reptilian cortex also houses the "startle centre", a mechanism that facilitates swift reactions to unexpected occurrences in our surroundings. That panicked lurch you experience when a door slams shut somewhere in the house, or the heightened awareness you feel when a twig cracks in a nearby bush while out on an evening stroll are both examples of the reptilian cortex at work. When it comes to our interaction with others, the reptilian brain offers up only the most basic impulses: aggression, mating, and territorial defence. There is no great difference, in this sense, between a crocodile defending its spot along the river and a turf war between two urban gangs.</p>
                 
@@ -417,6 +519,7 @@
             </div>
             
             <div class="passage-container" id="passage-3" style="display: none;">
+                <button class="full-screen-btn" onclick="toggleFullScreen(3)"><i class="fas fa-expand"></i> Full Screen</button>
                 <h2>READING PASSAGE 3: HELIUM'S FUTURE UP IN THE AIR</h2>
                 <p>In recent years we have all been exposed to dire media reports concerning the impending demise of global coal and oil reserves, but the depletion of another key non-renewable resource continues without receiving much press at all. Helium – an inert, odourless, monatomic element known to lay people as the substance that makes balloons float and voices squeak when inhaled – could be gone from this planet within a generation.</p>
                 
@@ -840,6 +943,18 @@
                 <p>0-15 correct answers: Below IELTS Band 5.0</p>
             </div>
             
+            <button class="btn" onclick="showAnalysis()">Analyze My Answers</button>
+            <button class="btn" onclick="location.reload()">Take Test Again</button>
+        </div>
+        
+        <div class="analysis-container" id="analysisContainer">
+            <h2>Answer Analysis</h2>
+            <p>Review your answers and see the correct solutions with explanations.</p>
+            
+            <div id="analysisContent">
+                <!-- Analysis content will be generated here -->
+            </div>
+            
             <button class="btn" onclick="location.reload()">Take Test Again</button>
         </div>
         
@@ -900,6 +1015,24 @@
             40: 'regulatory agency'
         };
         
+        // Answer explanations
+        const answerExplanations = {
+            1: "The passage states that chronobiology concerns 'short-term rhythms of time', not evolution over time.",
+            2: "The passage mentions that 'Marine life, for example, is influenced by tidal patterns' which relates to sea level changes.",
+            3: "The passage discusses diurnal, nocturnal and crepuscular animals but doesn't state that most are active during daytime.",
+            4: "Circadian rhythms are about 24-hour cycles, not different activities on different days.",
+            5: "The passage describes 'night people' as having a 'benign variation within circadian rhythms' which implies it can still be healthy.",
+            6: "The passage states that scientists have 'limited abilities to create durable modifications' and that 'health suffers when we breach these natural rhythms'.",
+            7: "The passage states that vegetables 'grown in season and ripened on the tree are far higher in essential nutrients'.",
+            8: "The passage specifically mentions 'The optimum moment has been whittled down to 7.22 a.m.'.",
+            9: "The passage states 'The recommended course of action is to follow an intense workout with a carbohydrate-rich breakfast'.",
+            10: "All options are mentioned except 'taking supplements at breakfast' which is noted as helpful for energy but not for absorption.",
+            11: "The passage recommends putting 'the brakes on caffeine consumption as early as 3 p.m.' which is mid-afternoon.",
+            12: "The passage recommends 'Consuming a modest snack' in the evening, which is a light meal.",
+            13: "The passage introduces chronobiology and then describes various practical applications throughout.",
+            // Additional explanations would be added for all questions
+        };
+        
         // Start the test
         function startTest() {
             document.getElementById('welcomeScreen').style.display = 'none';
@@ -942,6 +1075,24 @@
             document.querySelectorAll('.nav-btn')[passageNum-1].classList.add('active');
             
             currentPassage = passageNum;
+        }
+        
+        // Toggle full screen mode for passages
+        function toggleFullScreen(passageNum) {
+            const passageContent = document.getElementById(`passage-${passageNum}`).innerHTML;
+            const fullScreenDiv = document.createElement('div');
+            fullScreenDiv.className = 'full-screen-mode';
+            fullScreenDiv.innerHTML = passageContent;
+            
+            const closeButton = document.createElement('button');
+            closeButton.className = 'close-full-screen';
+            closeButton.innerHTML = '&times;';
+            closeButton.onclick = function() {
+                document.body.removeChild(fullScreenDiv);
+            };
+            
+            fullScreenDiv.appendChild(closeButton);
+            document.body.appendChild(fullScreenDiv);
         }
         
         // Select an option
@@ -1025,6 +1176,39 @@
                 document.getElementById('scoreFeedback').textContent = "You have basic English reading skills but need more practice to reach academic proficiency.";
             } else {
                 document.getElementById('scoreFeedback').textContent = "You need to develop your English reading skills further. Regular practice with authentic materials is recommended.";
+            }
+        }
+        
+        // Show answer analysis
+        function showAnalysis() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('analysisContainer').style.display = 'block';
+            
+            const analysisContent = document.getElementById('analysisContent');
+            analysisContent.innerHTML = '';
+            
+            // Create analysis for each question
+            for (let i = 1; i <= 40; i++) {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'analysis-question';
+                
+                let userAnswer = answers[i] || 'Not answered';
+                let correctAnswer = correctAnswers[i];
+                let isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
+                
+                questionDiv.innerHTML = `
+                    <h3>Question ${i}</h3>
+                    <p>Your answer: <strong>${userAnswer}</strong></p>
+                    <p>Correct answer: <strong>${correctAnswer}</strong></p>
+                    <div class="answer-feedback ${isCorrect ? 'correct-answer' : 'incorrect-answer'}">
+                        ${isCorrect ? 
+                            '<i class="fas fa-check-circle"></i> Correct!' : 
+                            '<i class="fas fa-times-circle"></i> Incorrect!'}
+                        ${answerExplanations[i] ? `<p>${answerExplanations[i]}</p>` : ''}
+                    </div>
+                `;
+                
+                analysisContent.appendChild(questionDiv);
             }
         }
         
