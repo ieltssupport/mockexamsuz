@@ -3,261 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IELTS Master - Free Exam Preparation</title>
+    <title>IELTS Reading Practice Test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --warning: #ffba08;
-            --danger: #ef233c;
-            --gray: #6c757d;
-            --light-blue: #e6f2ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f7fb;
-            color: var(--dark);
+            background-color: #f0f2f5;
+            color: #333;
             line-height: 1.6;
         }
         
-        h1, h2, h3, h4, h5 {
-            font-family: 'Poppins', sans-serif;
-        }
-        
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
         
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
         }
         
-        .header-content {
+        h1 {
+            color: #2d3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .test-info {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
+            background: #2d3e50;
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .btn {
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-outline {
-            border: 2px solid white;
-            color: white;
-            background: transparent;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .btn-filled {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .btn-filled:hover {
-            background: #d81159;
-            transform: translateY(-2px);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
+            padding: 15px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            line-height: 1.2;
         }
         
-        .hero p {
+        .timer {
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        /* IELTS Info Section */
-        .ielts-info {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .info-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .info-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .info-card h3 {
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
-        
-        /* Test Sections */
-        .test-section {
-            padding: 60px 0;
-            background: var(--light-blue);
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-        
-        .test-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        .time-remaining {
-            background: var(--primary);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
             font-weight: 600;
         }
         
-        .reading-content {
+        .instructions {
+            background: #e9f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .content-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .passage {
+            flex: 1;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 600px;
+            overflow-y: auto;
             line-height: 1.8;
         }
         
-        .reading-content p {
+        .passage h2 {
+            color: #2d3e50;
             margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .questions {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 600px;
+            overflow-y: auto;
+        }
+        
+        .questions h2 {
+            color: #2d3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .question-group {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-group:last-child {
+            border-bottom: none;
+        }
+        
+        .question-group h3 {
+            margin-bottom: 15px;
+            color: #2d3e50;
+            font-size: 1.1rem;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+        }
+        
+        .question p {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .option.selected {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            background: #2d3e50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: #1c2833;
+        }
+        
+        .btn-highlight {
+            background: #3498db;
+        }
+        
+        .btn-highlight:hover {
+            background: #2980b9;
+        }
+        
+        .btn-submit {
+            background: #27ae60;
+        }
+        
+        .btn-submit:hover {
+            background: #219653;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
         }
         
         .highlight {
@@ -265,630 +204,373 @@
             cursor: pointer;
         }
         
-        .questions-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .question {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .question:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .question h4 {
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
-        
-        .options label {
-            display: block;
-            margin-bottom: 12px;
-            padding: 12px 15px;
-            background: var(--light);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .options label:hover {
-            background: #e9ecef;
-        }
-        
-        .options input[type="radio"] {
-            margin-right: 10px;
-        }
-        
-        /* Writing Section */
-        .writing-task {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .writing-task h3 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .writing-prompt {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        textarea {
-            width: 100%;
-            min-height: 200px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Roboto', sans-serif;
-            resize: vertical;
-            margin-bottom: 20px;
-        }
-        
-        /* Listening Section */
-        .audio-player {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+        .answer-status {
             text-align: center;
+            margin: 15px 0;
+            color: #2d3e50;
+            font-weight: 500;
         }
         
-        .audio-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .audio-controls button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .progress-bar {
-            flex-grow: 1;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: var(--primary);
-            width: 30%;
-        }
-        
-        /* Test Navigation */
-        .test-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        /* Results Section */
         .results {
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            margin-top: 30px;
             display: none;
         }
         
-        .score-display {
-            font-size: 3rem;
-            color: var(--primary);
+        .score {
+            font-size: 2.5rem;
+            color: #27ae60;
             font-weight: 700;
             margin: 20px 0;
         }
         
-        .feedback {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 80px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: var(--success);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-column ul li a:hover {
-            color: white;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .header-content {
+            .content-container {
                 flex-direction: column;
-                text-align: center;
             }
             
-            nav ul {
-                margin: 20px 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 5px 10px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .test-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .test-navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn {
-                width: 100%;
-                text-align: center;
+            .passage, .questions {
+                height: auto;
+                max-height: 500px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-graduation-cap"></i>
-                    IELTS Master
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Practice Tests</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">Tips</a></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
-                </nav>
-                <div class="auth-buttons">
-                    <button class="btn btn-outline">Log In</button>
-                    <button class="btn btn-filled">Sign Up</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Free IELTS Exam Preparation</h1>
-                <p>Prepare for your IELTS exam with our free practice tests, authentic materials, and expert strategies</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- IELTS Info Section -->
-    <section class="ielts-info">
-        <div class="container">
-            <div class="section-title">
-                <h2>IELTS Test Sections</h2>
-                <p>Prepare for all four sections of the IELTS exam with our comprehensive practice materials</p>
-            </div>
-            
-            <div class="info-cards">
-                <div class="info-card">
-                    <i class="fas fa-book-open"></i>
-                    <h3>Reading</h3>
-                    <p>Practice with authentic reading passages and questions</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-headphones"></i>
-                    <h3>Listening</h3>
-                    <p>Improve your listening skills with audio exercises</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-pen"></i>
-                    <h3>Writing</h3>
-                    <p>Master both Task 1 and Task 2 writing exercises</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-microphone"></i>
-                    <h3>Speaking</h3>
-                    <p>Practice with sample speaking test questions</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Test Container -->
     <div class="container">
-        <!-- Reading Section -->
-        <section class="test-section">
-            <div class="test-header">
-                <h2>Reading Test</h2>
-                <div class="time-remaining">Time Remaining: 60:00</div>
-            </div>
-            
-            <div class="reading-content">
-                <h3>The History of Coffee</h3>
-                <p>Coffee, one of the world's most popular beverages, has a rich and fascinating history that dates back centuries. The story of coffee begins in the Ethiopian highlands, where legend says a goat herder named Kaldi discovered the beans after noticing his goats became energetic after eating them.</p>
-                
-                <p>From Ethiopia, coffee spread to Egypt and Yemen. It was in Arabia that coffee beans were first roasted and brewed similarly to how it is prepared today. By the 15th century, coffee was being grown in the Yemeni district of Arabia and by the 16th century, it had spread to Persia, Egypt, Syria, and Turkey.</p>
-                
-                <p>Coffee houses quickly became popular centers of social activity in cities across the Near East. People enjoyed coffee not only in their homes but also in public coffee houses called "qahveh khaneh," which began to appear in cities across the Near East. The popularity of coffee houses was unmatched, and people frequented them for all kinds of social activity.</p>
-                
-                <p>European travelers to the Near East brought back stories of an unusual dark black beverage. By the 17th century, coffee had made its way to Europe and was becoming popular across the continent. Some people reacted to this new beverage with suspicion or fear, calling it the "bitter invention of Satan."</p>
-                
-                <p>Coffee was introduced to America during the colonial period, but it didn't become widely popular until after the Boston Tea Party in 1773, when drinking tea became unpatriotic. The demand for coffee increased rapidly, and by the late 19th century, coffee had become a global commodity.</p>
-                
-                <p>Today, coffee is grown in over 70 countries, primarily in equatorial regions of the Americas, Southeast Asia, the Indian subcontinent, and Africa. Brazil is the largest coffee-producing nation, accounting for about 40% of world production.</p>
-            </div>
-            
-            <div class="questions-container">
-                <div class="question">
-                    <h4>Question 1: Where did coffee originate according to legend?</h4>
-                    <div class="options">
-                        <label><input type="radio" name="q1" value="a"> a) Egypt</label>
-                        <label><input type="radio" name="q1" value="b"> b) Ethiopia</label>
-                        <label><input type="radio" name="q1" value="c"> c) Yemen</label>
-                        <label><input type="radio" name="q1" value="d"> d) Turkey</label>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 2: Where were coffee beans first roasted and brewed similarly to modern methods?</h4>
-                    <div class="options">
-                        <label><input type="radio" name="q2" value="a"> a) Ethiopia</label>
-                        <label><input type="radio" name="q2" value="b"> b) Egypt</label>
-                        <label><input type="radio" name="q2" value="c"> c) Arabia</label>
-                        <label><input type="radio" name="q2" value="d"> d) Europe</label>
-                    </div>
-                </div>
-                
-                <div class="question">
-                    <h4>Question 3: What were the public coffee houses called in the Near East?</h4>
-                    <div class="options">
-                        <label><input type="radio" name="q3" value="a"> a) Coffee shops</label>
-                        <label><input type="radio" name="q3" value="b"> b) Cafés</label>
-                        <label><input type="radio" name="q3" value="c"> c) Qahveh khaneh</label>
-                        <label><input type="radio" name="q3" value="d"> d) Coffee parlors</label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="test-navigation">
-                <button class="btn btn-outline">Previous Section</button>
-                <button class="btn btn-filled">Next Section</button>
-            </div>
-        </section>
+        <div class="header">
+            <h1>IELTS Academic Reading Practice Test</h1>
+            <p>Time: 60 minutes • 40 questions</p>
+        </div>
         
-        <!-- Listening Section -->
-        <section class="test-section">
-            <div class="test-header">
-                <h2>Listening Test</h2>
-                <div class="time-remaining">Time Remaining: 30:00</div>
+        <div class="test-info">
+            <div class="timer">Time remaining: <span id="time">60:00</span></div>
+            <div class="answer-status">Answers: <span id="answerCount">0</span>/40</div>
+        </div>
+        
+        <div class="instructions">
+            <p><strong>INSTRUCTIONS:</strong> Read the passages and answer all questions. Write your answers on the question paper. You have 60 minutes to complete the test.</p>
+        </div>
+        
+        <div class="content-container">
+            <div class="passage">
+                <h2>READING PASSAGE 1: MAKING TIME FOR SCIENCE</h2>
+                <p>Chronobiology might sound a little futuristic – like something from a science fiction novel, perhaps – but it's actually a field of study that concerns one of the oldest processes life on this planet has ever known: short-term rhythms of time and their effect on flora and fauna.</p>
+                
+                <p>This can take many forms. Marine life, for example, is influenced by tidal patterns. Animals tend to be active or inactive depending on the position of the sun or moon. Numerous creatures, humans included, are largely diurnal – that is, they like to come out during the hours of sunlight. Nocturnal animals, such as bats and possums, prefer to forage by night. A third group are known as crepuscular: they thrive in the low-light of dawn and dusk and remain inactive at other hours.</p>
+                
+                <p>When it comes to humans, chronobiologists are interested in what is known as the circadian rhythm. This is the complete cycle our bodies are naturally geared to undergo within the passage of a twenty-four hour day. Aside from sleeping at night and waking during the day, each cycle involves many other factors such as changes in blood pressure and body temperature. Not everyone has an identical circadian rhythm. 'Night people', for example, often describe how they find it very hard to operate during the morning, but become alert and focused by evening. This is a benign variation within circadian rhythms known as a chronotype.</p>
+                
+                <p>Scientists have limited abilities to create durable modifications of chronobiological demands. Recent therapeutic developments for humans such as artificial light machines and melatonin administration can reset our circadian rhythms, for example, but our bodies can tell the difference and health suffers when we breach these natural rhythms for extended periods of time. Plants appear no more malleable in this respect; studies demonstrate that vegetables grown in season and ripened on the tree are far higher in essential nutrients than those grown in greenhouses and ripened by laser.</p>
+                
+                <p>Knowledge of chronobiological patterns can have many pragmatic implications for our day-to-day lives. While contemporary living can sometimes appear to subjugate biology – after all, who needs circadian rhythms when we have caffeine pills, energy drinks, shift work and cities that never sleep? – keeping in synch with our body clock is important.</p>
+                
+                <p>The average urban resident, for example, rouses at the eye-blearing time of 6.04 a.m., which researchers believe to be far too early. One study found that even rising at 7.00 a.m. has deleterious effects on health unless exercise is performed for 30 minutes afterward. The optimum moment has been whittled down to 7.22 a.m.; muscle aches, headaches and moodiness were reported to be lowest by participants in the study who awoke then.</p>
+                
+                <p>Once you're up and ready to go, what then? If you're trying to shed some extra pounds, dieticians are adamant: never skip breakfast. This disorients your circadian rhythm and puts your body in starvation mode. The recommended course of action is to follow an intense workout with a carbohydrate-rich breakfast; the other way round and weight loss results are not as pronounced.</p>
+                
+                <p>Morning is also great for breaking out the vitamins. Supplement absorption by the body is not temporal-dependent, but naturopath Pam Stone notes that the extra boost at breakfast helps us get energised for the day ahead. For improved absorption, Stone suggests pairing supplements with a food in which they are soluble and steering clear of caffeinated beverages. Finally, Stone warns to take care with storage; high potency is best for absorption, and warmth and humidity are known to deplete the potency of a supplement.</p>
+                
+                <p>After-dinner espressos are becoming more of a tradition – we have the Italians to thank for that – but to prepare for a good night's sleep we are better off putting the brakes on caffeine consumption as early as 3 p.m. With a seven hour half-life, a cup of coffee containing 90 mg of caffeine taken at this hour could still leave 45 mg of caffeine in your nervous system at ten o'clock that evening. It is essential that, by the time you are ready to sleep, your body is rid of all traces.</p>
+                
+                <p>Evenings are important for winding down before sleep; however, dietician Geraldine Georgeou warns that an after-five carbohydrate-fast is more cultural myth than chronobiological demand. This will deprive your body of vital energy needs. Overloading your gut could lead to indigestion, though. Our digestive tracts do not shut down for the night entirely, but their work slows to a crawl as our bodies prepare for sleep. Consuming a modest snack should be entirely sufficient.</p>
             </div>
             
-            <div class="audio-player">
-                <h3>Listen to the audio and answer the questions below</h3>
-                <div class="audio-controls">
-                    <button><i class="fas fa-backward"></i></button>
-                    <button><i class="fas fa-play"></i></button>
-                    <button><i class="fas fa-forward"></i></button>
-                    <div class="progress-bar">
-                        <div class="progress"></div>
+            <div class="questions">
+                <h2>Questions 1-13</h2>
+                
+                <div class="question-group">
+                    <h3>Questions 1-7</h3>
+                    <p>Do the following statements agree with the information given in Reading Passage 1?</p>
+                    <p>In boxes 1-7 on your answer sheet, write:</p>
+                    <p><strong>TRUE</strong> if the statement agrees with the information<br>
+                    <strong>FALSE</strong> if the statement contradicts the information<br>
+                    <strong>NOT GIVEN</strong> if there is no information on this</p>
+                    
+                    <div class="question">
+                        <p>1. Chronobiology is the study of how living things have evolved over time.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 1, 'FALSE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 1, 'TRUE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 1, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
                     </div>
-                    <span>2:45 / 4:30</span>
-                </div>
-            </div>
-            
-            <div class="questions-container">
-                <div class="question">
-                    <h4>Question 1: What is the main topic of the lecture?</h4>
-                    <div class="options">
-                        <label><input type="radio" name="lq1" value="a"> a) Climate change effects</label>
-                        <label><input type="radio" name="lq1" value="b"> b) Renewable energy sources</label>
-                        <label><input type="radio" name="lq1" value="c"> c) Marine ecosystems</label>
-                        <label><input type="radio" name="lq1" value="d"> d) Sustainable agriculture</label>
+                    
+                    <div class="question">
+                        <p>2. The rise and fall of sea levels affects how sea creatures behave.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 2, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 2, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 2, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>3. Most animals are active during the daytime.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 3, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 3, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 3, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>4. Circadian rhythms identify how we do different things on different days.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 4, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 4, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 4, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>5. A 'night person' can still have a healthy circadian rhythm.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 5, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 5, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 5, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>6. New therapies can permanently change circadian rhythms without causing harm.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 6, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 6, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 6, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>7. Naturally-produced vegetables have more nutritional value.</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 7, 'TRUE')">TRUE</div>
+                            <div class="option" onclick="selectOption(this, 7, 'FALSE')">FALSE</div>
+                            <div class="option" onclick="selectOption(this, 7, 'NOT GIVEN')">NOT GIVEN</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="question">
-                    <h4>Question 2: According to the speaker, what percentage of coral reefs are threatened?</h4>
-                    <div class="options">
-                        <label><input type="radio" name="lq2" value="a"> a) 25%</label>
-                        <label><input type="radio" name="lq2" value="b"> b) 50%</label>
-                        <label><input type="radio" name="lq2" value="c"> c) 75%</label>
-                        <label><input type="radio" name="lq2" value="d"> d) 90%</label>
+                <div class="question-group">
+                    <h3>Questions 8-13</h3>
+                    <p>Choose the correct letter, A, B, C or D.</p>
+                    
+                    <div class="question">
+                        <p>8. What did researchers identify as the ideal time to wake up in the morning?</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 8, 'A')">A) 6.04</div>
+                            <div class="option" onclick="selectOption(this, 8, 'B')">B) 7.00</div>
+                            <div class="option" onclick="selectOption(this, 8, 'C')">C) 7.22</div>
+                            <div class="option" onclick="selectOption(this, 8, 'D')">D) 7.30</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>9. In order to lose weight, we should</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 9, 'A')">A) avoid eating breakfast</div>
+                            <div class="option" onclick="selectOption(this, 9, 'B')">B) eat a low carbohydrate breakfast</div>
+                            <div class="option" onclick="selectOption(this, 9, 'C')">C) exercise before breakfast</div>
+                            <div class="option" onclick="selectOption(this, 9, 'D')">D) exercise after breakfast</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>10. Which is NOT mentioned as a way to improve supplement absorption?</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 10, 'A')">A) avoiding drinks containing caffeine while taking supplements</div>
+                            <div class="option" onclick="selectOption(this, 10, 'B')">B) taking supplements at breakfast</div>
+                            <div class="option" onclick="selectOption(this, 10, 'C')">C) taking supplements with foods that can dissolve them</div>
+                            <div class="option" onclick="selectOption(this, 10, 'D')">D) storing supplements in a cool, dry environment</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>11. The best time to stop drinking coffee is</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 11, 'A')">A) mid-afternoon</div>
+                            <div class="option" onclick="selectOption(this, 11, 'B')">B) 10 p.m.</div>
+                            <div class="option" onclick="selectOption(this, 11, 'C')">C) only when feeling anxious</div>
+                            <div class="option" onclick="selectOption(this, 11, 'D')">D) after dinner</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>12. In the evening, we should</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 12, 'A')">A) stay away from carbohydrates</div>
+                            <div class="option" onclick="selectOption(this, 12, 'B')">B) stop exercising</div>
+                            <div class="option" onclick="selectOption(this, 12, 'C')">C) eat as much as possible</div>
+                            <div class="option" onclick="selectOption(this, 12, 'D')">D) eat a light meal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>13. Which of the following phrases best describes the main aim of Reading Passage 1?</p>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 13, 'A')">A) to suggest healthier ways of eating, sleeping and exercising</div>
+                            <div class="option" onclick="selectOption(this, 13, 'B')">B) to describe how modern life has made chronobiology largely irrelevant</div>
+                            <div class="option" onclick="selectOption(this, 13, 'C')">C) to introduce chronobiology and describe some practical applications</div>
+                            <div class="option" onclick="selectOption(this, 13, 'D')">D) to plan a daily schedule that can alter our natural chronobiological rhythms</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="test-navigation">
-                <button class="btn btn-outline">Previous Section</button>
-                <button class="btn btn-filled">Next Section</button>
-            </div>
-        </section>
+        </div>
         
-        <!-- Writing Section -->
-        <section class="test-section">
-            <div class="test-header">
-                <h2>Writing Test</h2>
-                <div class="time-remaining">Time Remaining: 60:00</div>
-            </div>
-            
-            <div class="writing-task">
-                <h3>Task 1</h3>
-                <div class="writing-prompt">
-                    <p>The graph below shows the proportion of the population aged 65 and over between 1940 and 2040 in three different countries. Summarize the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-                </div>
-                <textarea placeholderWrite your answer here..."></textarea>
-            </div>
-            
-            <div class="writing-task">
-                <h3>Task 2</h3>
-                <div class="writing-prompt">
-                    <p>Some people believe that it is best to accept a bad situation, such as an unsatisfactory job or shortage of money. Others argue that it is better to try and improve such situations. Discuss both these views and give your own opinion.</p>
-                </div>
-                <textarea placeholder="Write your essay here..."></textarea>
-            </div>
-            
-            <div class="test-navigation">
-                <button class="btn btn-outline">Previous Section</button>
-                <button class="btn btn-filled">Submit Test</button>
-            </div>
-        </section>
+        <div class="controls">
+            <button class="btn btn-highlight" onclick="toggleHighlight()"><i class="fas fa-highlighter"></i> Toggle Highlight</button>
+            <button class="btn btn-submit" onclick="submitTest()">Submit Answers</button>
+        </div>
         
-        <!-- Results Section -->
-        <section class="results">
+        <div class="results" id="results">
             <h2>Your Test Results</h2>
             <p>You have completed the practice test. Here are your results:</p>
             
-            <div class="score-display">
-                7.5
-            </div>
+            <div class="score" id="score">0/13</div>
             
-            <div class="feedback">
-                <h3>Overall Band Score: 7.5</h3>
-                <p>Listening: 8.0</p>
-                <p>Reading: 7.5</p>
-                <p>Writing: 7.0</p>
-                <p>Speaking: Not assessed</p>
-            </div>
-            
-            <p>This is a good score that meets the requirements of many universities and immigration programs.</p>
-            <button class="btn btn-filled">Review Answers</button>
-        </section>
+            <p id="feedback">Well done! You scored 0 out of 13.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Made by Mirabbos Mirzahidov</p>
+            <p>IELTS Practice Test © 2023</p>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>IELTS Master</h3>
-                    <p>Providing free, high-quality IELTS preparation resources to students worldwide.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Practice Tests</a></li>
-                        <li><a href="#">Study Guides</a></li>
-                        <li><a href="#">Vocabulary Lists</a></li>
-                        <li><a href="#">Tips & Strategies</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>IELTS Information</h3>
-                    <ul>
-                        <li><a href="#">Test Format</a></li>
-                        <li><a href="#">Scoring Criteria</a></li>
-                        <li><a href="#">Test Centers</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 IELTS Master. All rights reserved.</p>
-                <p>This website is not affiliated with the official IELTS test administrators.</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Text highlighting functionality
-            const readingContent = document.querySelector('.reading-content');
-            let isHighlighting = false;
+        // Variables
+        let answers = {};
+        let timeLeft = 3600; // 60 minutes in seconds
+        let timerInterval;
+        let isHighlighting = false;
+        
+        // Correct answers
+        const correctAnswers = {
+            1: 'FALSE',
+            2: 'TRUE',
+            3: 'NOT GIVEN',
+            4: 'FALSE',
+            5: 'TRUE',
+            6: 'FALSE',
+            7: 'TRUE',
+            8: 'C',
+            9: 'C',
+            10: 'B',
+            11: 'A',
+            12: 'D',
+            13: 'C'
+        };
+        
+        // Format time for display
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // Update the timer
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('time').textContent = formatTime(timeLeft);
+            } else {
+                clearInterval(timerInterval);
+                submitTest();
+            }
+        }
+        
+        // Start the timer when the page loads
+        window.onload = function() {
+            timerInterval = setInterval(updateTimer, 1000);
+        };
+        
+        // Select an option
+        function selectOption(element, questionNum, answer) {
+            // Remove selected class from all options in this question
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
             
-            // Toggle highlight mode when clicking the highlight button
-            document.querySelector('.btn-highlight').addEventListener('click', function() {
-                isHighlighting = !isHighlighting;
-                this.classList.toggle('active');
-                readingContent.style.cursor = isHighlighting ? 'url("highlight.cur"), auto' : 'default';
-            });
+            // Add selected class to clicked option
+            element.classList.add('selected');
             
-            // Highlight text when selected
-            readingContent.addEventListener('mouseup', function() {
-                if (isHighlighting) {
-                    const selection = window.getSelection();
-                    if (selection.toString().length > 0) {
-                        const range = selection.getRangeAt(0);
-                        const highlight = document.createElement('span');
-                        highlight.className = 'highlight';
-                        highlight.appendChild(range.extractContents());
-                        range.insertNode(highlight);
-                        selection.removeAllRanges();
-                    }
+            // Store the answer
+            answers[questionNum] = answer;
+            
+            // Update answer count
+            document.getElementById('answerCount').textContent = Object.keys(answers).length;
+        }
+        
+        // Toggle highlight mode
+        function toggleHighlight() {
+            isHighlighting = !isHighlighting;
+            const passage = document.querySelector('.passage');
+            passage.style.cursor = isHighlighting ? 'url("highlight.cur"), auto' : 'default';
+            
+            const btn = document.querySelector('.btn-highlight');
+            if (isHighlighting) {
+                btn.innerHTML = '<i class="fas fa-highlighter"></i> Highlighting: ON';
+                btn.style.background = '#27ae60';
+            } else {
+                btn.innerHTML = '<i class="fas fa-highlighter"></i> Toggle Highlight';
+                btn.style.background = '#3498db';
+            }
+        }
+        
+        // Enable text highlighting
+        document.querySelector('.passage').addEventListener('mouseup', function() {
+            if (isHighlighting) {
+                const selection = window.getSelection();
+                if (selection.toString().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    const highlight = document.createElement('span');
+                    highlight.className = 'highlight';
+                    highlight.appendChild(range.extractContents());
+                    range.insertNode(highlight);
+                    selection.removeAllRanges();
                 }
-            });
+            }
+        });
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
             
-            // Audio player functionality
-            const playButton = document.querySelector('.audio-controls .fa-play');
-            playButton.addEventListener('click', function() {
-                const isPlaying = this.classList.contains('fa-pause');
-                
-                if (isPlaying) {
-                    this.classList.remove('fa-pause');
-                    this.classList.add('fa-play');
-                    // Pause audio logic would go here
-                } else {
-                    this.classList.remove('fa-play');
-                    this.classList.add('fa-pause');
-                    // Play audio logic would go here
+            // Calculate score
+            let score = 0;
+            for (const question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
                 }
-            });
-            
-            // Timer functionality
-            function startTimer(duration, display) {
-                let timer = duration, minutes, seconds;
-                setInterval(function () {
-                    minutes = parseInt(timer / 60, 10);
-                    seconds = parseInt(timer % 60, 10);
-                    
-                    minutes = minutes < 10 ? "0" + minutes : minutes;
-                    seconds = seconds < 10 ? "0" + seconds : seconds;
-                    
-                    display.textContent = "Time Remaining: " + minutes + ":" + seconds;
-                    
-                    if (--timer < 0) {
-                        timer = duration;
-                    }
-                }, 1000);
             }
             
-            // Initialize timers for each section
-            const readingTimer = 60 * 60; // 60 minutes
-            const listeningTimer = 30 * 60; // 30 minutes
-            const writingTimer = 60 * 60; // 60 minutes
+            // Show results
+            document.getElementById('score').textContent = `${score}/13`;
             
-            const readingDisplay = document.querySelectorAll('.time-remaining')[0];
-            const listeningDisplay = document.querySelectorAll('.time-remaining')[1];
-            const writingDisplay = document.querySelectorAll('.time-remaining')[2];
+            // Provide feedback based on score
+            if (score >= 10) {
+                document.getElementById('feedback').textContent = "Excellent! You have a good understanding of the reading content.";
+            } else if (score >= 7) {
+                document.getElementById('feedback').textContent = "Good effort! With more practice, you'll improve your reading skills.";
+            } else {
+                document.getElementById('feedback').textContent = "Keep practicing! Try reading more English materials regularly.";
+            }
             
-            startTimer(readingTimer, readingDisplay);
-            startTimer(listeningTimer, listeningDisplay);
-            startTimer(writingTimer, writingDisplay);
+            document.getElementById('results').style.display = 'block';
             
-            // Submit test functionality
-            document.querySelector('.btn-filled').addEventListener('click', function() {
-                if (this.textContent === 'Submit Test') {
-                    document.querySelector('.results').style.display = 'block';
-                    window.scrollTo(0, document.body.scrollHeight);
-                }
-            });
-        });
+            // Disable further answering
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            document.querySelector('.btn-submit').disabled = true;
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
