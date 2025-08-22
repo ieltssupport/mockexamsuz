@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreeExamPrep - Free Mock Exams</title>
+    <title>IELTS Master - Free Exam Preparation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         :root {
@@ -21,12 +21,20 @@
             --dark: #212529;
             --success: #4cc9f0;
             --warning: #ffba08;
+            --danger: #ef233c;
+            --gray: #6c757d;
+            --light-blue: #e6f2ff;
         }
         
         body {
+            font-family: 'Roboto', sans-serif;
             background-color: #f5f7fb;
             color: var(--dark);
             line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
         }
         
         .container {
@@ -97,11 +105,14 @@
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
+            cursor: pointer;
+            border: none;
         }
         
         .btn-outline {
             border: 2px solid white;
             color: white;
+            background: transparent;
         }
         
         .btn-outline:hover {
@@ -157,33 +168,10 @@
             opacity: 0.9;
         }
         
-        .search-bar {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .search-bar input {
-            flex: 1;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px 0 0 50px;
-            font-size: 1rem;
-        }
-        
-        .search-bar button {
-            padding: 0 25px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 0 50px 50px 0;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        /* Subjects Section */
-        .subjects {
+        /* IELTS Info Section */
+        .ielts-info {
             padding: 80px 0;
+            background: white;
         }
         
         .section-title {
@@ -198,170 +186,237 @@
         }
         
         .section-title p {
-            color: #6c757d;
+            color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
         }
         
-        .subject-grid {
+        .info-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
+            margin-top: 40px;
         }
         
-        .subject-card {
-            background: white;
+        .info-card {
+            background: var(--light);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 30px;
+            text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .subject-icon {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 2.5rem;
-        }
-        
-        .subject-info {
-            padding: 20px;
-        }
-        
-        .subject-info h3 {
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-        
-        .subject-info p {
-            color: #6c757d;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .subject-info a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-        
-        .subject-info a i {
-            margin-left: 5px;
             transition: transform 0.3s ease;
         }
         
-        .subject-info a:hover i {
-            transform: translateX(5px);
+        .info-card:hover {
+            transform: translateY(-5px);
         }
         
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
+        .info-card i {
+            font-size: 2.5rem;
             color: var(--primary);
-            font-size: 2rem;
+            margin-bottom: 20px;
         }
         
-        .feature-card h3 {
+        .info-card h3 {
             margin-bottom: 15px;
             color: var(--secondary);
         }
         
-        /* Testimonials */
-        .testimonials {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        /* Test Sections */
+        .test-section {
+            padding: 60px 0;
+            background: var(--light-blue);
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .time-remaining {
+            background: var(--primary);
             color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
         }
         
-        .testimonials .section-title h2 {
-            color: white;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
+        .reading-content {
+            background: white;
             padding: 30px;
             border-radius: 12px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
         
-        .testimonial-text {
+        .reading-content p {
             margin-bottom: 20px;
-            font-style: italic;
         }
         
-        .testimonial-author {
-            display: flex;
-            align-items: center;
+        .highlight {
+            background: yellow;
+            cursor: pointer;
         }
         
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        
-        /* CTA Section */
-        .cta {
-            padding: 80px 0;
-            text-align: center;
+        .questions-container {
             background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .question h4 {
+            margin-bottom: 15px;
             color: var(--secondary);
         }
         
-        .cta p {
+        .options label {
+            display: block;
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: var(--light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .options label:hover {
+            background: #e9ecef;
+        }
+        
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        /* Writing Section */
+        .writing-task {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .writing-task h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .writing-prompt {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        
+        /* Listening Section */
+        .audio-player {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .audio-controls button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            width: 30%;
+        }
+        
+        /* Test Navigation */
+        .test-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Results Section */
+        .results {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: none;
+        }
+        
+        .score-display {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .feedback {
             max-width: 600px;
-            margin: 0 auto 30px;
-            color: #6c757d;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 30px;
         }
         
         /* Footer */
@@ -369,6 +424,7 @@
             background: var(--dark);
             color: white;
             padding: 60px 0 30px;
+            margin-top: 80px;
         }
         
         .footer-content {
@@ -442,24 +498,31 @@
             
             nav ul {
                 margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
             }
             
-            .search-bar {
+            .test-header {
                 flex-direction: column;
+                gap: 15px;
             }
             
-            .search-bar input {
-                border-radius: 50px;
-                margin-bottom: 10px;
+            .test-navigation {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .search-bar button {
-                border-radius: 50px;
-                padding: 15px;
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -471,20 +534,20 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-graduation-cap"></i>
-                    FreeExamPrep
+                    IELTS Master
                 </div>
                 <nav>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Exams</a></li>
-                        <li><a href="#">Subjects</a></li>
-                        <li><a href="#">Practice</a></li>
+                        <li><a href="#">Practice Tests</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Tips</a></li>
                         <li><a href="#">About</a></li>
                     </ul>
                 </nav>
                 <div class="auth-buttons">
-                    <a href="#" class="btn btn-outline">Log In</a>
-                    <a href="#" class="btn btn-filled">Sign Up</a>
+                    <button class="btn btn-outline">Log In</button>
+                    <button class="btn btn-filled">Sign Up</button>
                 </div>
             </div>
         </div>
@@ -494,155 +557,213 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Free Exam Preparation for Everyone</h1>
-                <p>Access thousands of free practice questions, mock exams, and study materials for all major subjects and standardized tests.</p>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search for exams or subjects...">
-                    <button>Search</button>
-                </div>
+                <h1>Free IELTS Exam Preparation</h1>
+                <p>Prepare for your IELTS exam with our free practice tests, authentic materials, and expert strategies</p>
             </div>
         </div>
     </section>
 
-    <!-- Subjects Section -->
-    <section class="subjects">
+    <!-- IELTS Info Section -->
+    <section class="ielts-info">
         <div class="container">
             <div class="section-title">
-                <h2>Popular Subjects</h2>
-                <p>Choose from a wide range of subjects and start preparing for your exams today</p>
+                <h2>IELTS Test Sections</h2>
+                <p>Prepare for all four sections of the IELTS exam with our comprehensive practice materials</p>
             </div>
-            <div class="subject-grid">
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <div class="subject-info">
-                        <h3>Mathematics</h3>
-                        <p>Algebra, Calculus, Geometry, Statistics and more</p>
-                        <a href="#">Explore Math <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Reading</h3>
+                    <p>Practice with authentic reading passages and questions</p>
                 </div>
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <div class="subject-info">
-                        <h3>Science</h3>
-                        <p>Physics, Chemistry, Biology, Environmental Science</p>
-                        <a href="#">Explore Science <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="info-card">
+                    <i class="fas fa-headphones"></i>
+                    <h3>Listening</h3>
+                    <p>Improve your listening skills with audio exercises</p>
                 </div>
-                <div class="subject-card">
-                    <div class="subject-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <div class="subject-info">
-                        <h3>Languages</h3>
-                        <p>English, Spanish, French, Literature and Writing</p>
-                        <a href="#">Explore Languages <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="info-card">
+                    <i class="fas fa-pen"></i>
+                    <h3>Writing</h3>
+                    <p>Master both Task 1 and Task 2 writing exercises</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Speaking</h3>
+                    <p>Practice with sample speaking test questions</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Choose FreeExamPrep</h2>
-                <p>We provide everything you need to prepare for your exams successfully</p>
+    <!-- Test Container -->
+    <div class="container">
+        <!-- Reading Section -->
+        <section class="test-section">
+            <div class="test-header">
+                <h2>Reading Test</h2>
+                <div class="time-remaining">Time Remaining: 60:00</div>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Comprehensive Materials</h3>
-                    <p>Access thousands of practice questions, study guides, and mock exams for all major subjects.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your performance with detailed analytics and personalized recommendations.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Timed Exams</h3>
-                    <p>Simulate real exam conditions with our timed test feature to build your time management skills.</p>
-                </div>
+            
+            <div class="reading-content">
+                <h3>The History of Coffee</h3>
+                <p>Coffee, one of the world's most popular beverages, has a rich and fascinating history that dates back centuries. The story of coffee begins in the Ethiopian highlands, where legend says a goat herder named Kaldi discovered the beans after noticing his goats became energetic after eating them.</p>
+                
+                <p>From Ethiopia, coffee spread to Egypt and Yemen. It was in Arabia that coffee beans were first roasted and brewed similarly to how it is prepared today. By the 15th century, coffee was being grown in the Yemeni district of Arabia and by the 16th century, it had spread to Persia, Egypt, Syria, and Turkey.</p>
+                
+                <p>Coffee houses quickly became popular centers of social activity in cities across the Near East. People enjoyed coffee not only in their homes but also in public coffee houses called "qahveh khaneh," which began to appear in cities across the Near East. The popularity of coffee houses was unmatched, and people frequented them for all kinds of social activity.</p>
+                
+                <p>European travelers to the Near East brought back stories of an unusual dark black beverage. By the 17th century, coffee had made its way to Europe and was becoming popular across the continent. Some people reacted to this new beverage with suspicion or fear, calling it the "bitter invention of Satan."</p>
+                
+                <p>Coffee was introduced to America during the colonial period, but it didn't become widely popular until after the Boston Tea Party in 1773, when drinking tea became unpatriotic. The demand for coffee increased rapidly, and by the late 19th century, coffee had become a global commodity.</p>
+                
+                <p>Today, coffee is grown in over 70 countries, primarily in equatorial regions of the Americas, Southeast Asia, the Indian subcontinent, and Africa. Brazil is the largest coffee-producing nation, accounting for about 40% of world production.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Students Say</h2>
-                <p>Read testimonials from students who have succeeded with FreeExamPrep</p>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "FreeExamPrep helped me score in the top 10% on my national exams. The practice tests were exactly what I needed to prepare!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div>
-                            <h4>Alex Johnson</h4>
-                            <p>Mathematics Student</p>
-                        </div>
+            
+            <div class="questions-container">
+                <div class="question">
+                    <h4>Question 1: Where did coffee originate according to legend?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a) Egypt</label>
+                        <label><input type="radio" name="q1" value="b"> b) Ethiopia</label>
+                        <label><input type="radio" name="q1" value="c"> c) Yemen</label>
+                        <label><input type="radio" name="q1" value="d"> d) Turkey</label>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "I was able to improve my chemistry score by 30% after using FreeExamPrep for just two months. The explanations are so clear!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
-                        <div>
-                            <h4>Maria Lopez</h4>
-                            <p>Science Student</p>
-                        </div>
+                
+                <div class="question">
+                    <h4>Question 2: Where were coffee beans first roasted and brewed similarly to modern methods?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a) Ethiopia</label>
+                        <label><input type="radio" name="q2" value="b"> b) Egypt</label>
+                        <label><input type="radio" name="q2" value="c"> c) Arabia</label>
+                        <label><input type="radio" name="q2" value="d"> d) Europe</label>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The language practice exercises are fantastic! I aced my English literature exam thanks to the detailed feedback I received."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">D</div>
-                        <div>
-                            <h4>David Kim</h4>
-                            <p>Language Student</p>
-                        </div>
+                
+                <div class="question">
+                    <h4>Question 3: What were the public coffee houses called in the Near East?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a) Coffee shops</label>
+                        <label><input type="radio" name="q3" value="b"> b) Cafés</label>
+                        <label><input type="radio" name="q3" value="c"> c) Qahveh khaneh</label>
+                        <label><input type="radio" name="q3" value="d"> d) Coffee parlors</label>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Start Your Exam Preparation Today</h2>
-            <p>Join thousands of students who are already using FreeExamPrep to achieve their academic goals</p>
-            <a href="#" class="btn btn-filled">Create Free Account</a>
-        </div>
-    </section>
+            
+            <div class="test-navigation">
+                <button class="btn btn-outline">Previous Section</button>
+                <button class="btn btn-filled">Next Section</button>
+            </div>
+        </section>
+        
+        <!-- Listening Section -->
+        <section class="test-section">
+            <div class="test-header">
+                <h2>Listening Test</h2>
+                <div class="time-remaining">Time Remaining: 30:00</div>
+            </div>
+            
+            <div class="audio-player">
+                <h3>Listen to the audio and answer the questions below</h3>
+                <div class="audio-controls">
+                    <button><i class="fas fa-backward"></i></button>
+                    <button><i class="fas fa-play"></i></button>
+                    <button><i class="fas fa-forward"></i></button>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <span>2:45 / 4:30</span>
+                </div>
+            </div>
+            
+            <div class="questions-container">
+                <div class="question">
+                    <h4>Question 1: What is the main topic of the lecture?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="lq1" value="a"> a) Climate change effects</label>
+                        <label><input type="radio" name="lq1" value="b"> b) Renewable energy sources</label>
+                        <label><input type="radio" name="lq1" value="c"> c) Marine ecosystems</label>
+                        <label><input type="radio" name="lq1" value="d"> d) Sustainable agriculture</label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h4>Question 2: According to the speaker, what percentage of coral reefs are threatened?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="lq2" value="a"> a) 25%</label>
+                        <label><input type="radio" name="lq2" value="b"> b) 50%</label>
+                        <label><input type="radio" name="lq2" value="c"> c) 75%</label>
+                        <label><input type="radio" name="lq2" value="d"> d) 90%</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-navigation">
+                <button class="btn btn-outline">Previous Section</button>
+                <button class="btn btn-filled">Next Section</button>
+            </div>
+        </section>
+        
+        <!-- Writing Section -->
+        <section class="test-section">
+            <div class="test-header">
+                <h2>Writing Test</h2>
+                <div class="time-remaining">Time Remaining: 60:00</div>
+            </div>
+            
+            <div class="writing-task">
+                <h3>Task 1</h3>
+                <div class="writing-prompt">
+                    <p>The graph below shows the proportion of the population aged 65 and over between 1940 and 2040 in three different countries. Summarize the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                </div>
+                <textarea placeholderWrite your answer here..."></textarea>
+            </div>
+            
+            <div class="writing-task">
+                <h3>Task 2</h3>
+                <div class="writing-prompt">
+                    <p>Some people believe that it is best to accept a bad situation, such as an unsatisfactory job or shortage of money. Others argue that it is better to try and improve such situations. Discuss both these views and give your own opinion.</p>
+                </div>
+                <textarea placeholder="Write your essay here..."></textarea>
+            </div>
+            
+            <div class="test-navigation">
+                <button class="btn btn-outline">Previous Section</button>
+                <button class="btn btn-filled">Submit Test</button>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section class="results">
+            <h2>Your Test Results</h2>
+            <p>You have completed the practice test. Here are your results:</p>
+            
+            <div class="score-display">
+                7.5
+            </div>
+            
+            <div class="feedback">
+                <h3>Overall Band Score: 7.5</h3>
+                <p>Listening: 8.0</p>
+                <p>Reading: 7.5</p>
+                <p>Writing: 7.0</p>
+                <p>Speaking: Not assessed</p>
+            </div>
+            
+            <p>This is a good score that meets the requirements of many universities and immigration programs.</p>
+            <button class="btn btn-filled">Review Answers</button>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>FreeExamPrep</h3>
-                    <p>Providing free, high-quality exam preparation resources to students worldwide.</p>
+                    <h3>IELTS Master</h3>
+                    <p>Providing free, high-quality IELTS preparation resources to students worldwide.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -651,23 +772,21 @@
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Subjects</h3>
-                    <ul>
-                        <li><a href="#">Mathematics</a></li>
-                        <li><a href="#">Science</a></li>
-                        <li><a href="#">Languages</a></li>
-                        <li><a href="#">Social Studies</a></li>
-                        <li><a href="#">Computer Science</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
                     <h3>Resources</h3>
                     <ul>
                         <li><a href="#">Practice Tests</a></li>
                         <li><a href="#">Study Guides</a></li>
-                        <li><a href="#">Flashcards</a></li>
-                        <li><a href="#">Exam Tips</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Vocabulary Lists</a></li>
+                        <li><a href="#">Tips & Strategies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>IELTS Information</h3>
+                    <ul>
+                        <li><a href="#">Test Format</a></li>
+                        <li><a href="#">Scoring Criteria</a></li>
+                        <li><a href="#">Test Centers</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -675,40 +794,99 @@
                     <ul>
                         <li><a href="#">Help Center</a></li>
                         <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 FreeExamPrep. All rights reserved.</p>
+                <p>&copy; 2023 IELTS Master. All rights reserved.</p>
+                <p>This website is not affiliated with the official IELTS test administrators.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function() {
-            const subjectCards = document.querySelectorAll('.subject-card');
+            // Text highlighting functionality
+            const readingContent = document.querySelector('.reading-content');
+            let isHighlighting = false;
             
-            subjectCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
-                });
+            // Toggle highlight mode when clicking the highlight button
+            document.querySelector('.btn-highlight').addEventListener('click', function() {
+                isHighlighting = !isHighlighting;
+                this.classList.toggle('active');
+                readingContent.style.cursor = isHighlighting ? 'url("highlight.cur"), auto' : 'default';
             });
             
-            // Search functionality placeholder
-            const searchButton = document.querySelector('.search-bar button');
-            searchButton.addEventListener('click', function() {
-                const searchInput = document.querySelector('.search-bar input');
-                alert('Search functionality would show results for: ' + searchInput.value);
+            // Highlight text when selected
+            readingContent.addEventListener('mouseup', function() {
+                if (isHighlighting) {
+                    const selection = window.getSelection();
+                    if (selection.toString().length > 0) {
+                        const range = selection.getRangeAt(0);
+                        const highlight = document.createElement('span');
+                        highlight.className = 'highlight';
+                        highlight.appendChild(range.extractContents());
+                        range.insertNode(highlight);
+                        selection.removeAllRanges();
+                    }
+                }
+            });
+            
+            // Audio player functionality
+            const playButton = document.querySelector('.audio-controls .fa-play');
+            playButton.addEventListener('click', function() {
+                const isPlaying = this.classList.contains('fa-pause');
+                
+                if (isPlaying) {
+                    this.classList.remove('fa-pause');
+                    this.classList.add('fa-play');
+                    // Pause audio logic would go here
+                } else {
+                    this.classList.remove('fa-play');
+                    this.classList.add('fa-pause');
+                    // Play audio logic would go here
+                }
+            });
+            
+            // Timer functionality
+            function startTimer(duration, display) {
+                let timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+                    
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    
+                    display.textContent = "Time Remaining: " + minutes + ":" + seconds;
+                    
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                }, 1000);
+            }
+            
+            // Initialize timers for each section
+            const readingTimer = 60 * 60; // 60 minutes
+            const listeningTimer = 30 * 60; // 30 minutes
+            const writingTimer = 60 * 60; // 60 minutes
+            
+            const readingDisplay = document.querySelectorAll('.time-remaining')[0];
+            const listeningDisplay = document.querySelectorAll('.time-remaining')[1];
+            const writingDisplay = document.querySelectorAll('.time-remaining')[2];
+            
+            startTimer(readingTimer, readingDisplay);
+            startTimer(listeningTimer, listeningDisplay);
+            startTimer(writingTimer, writingDisplay);
+            
+            // Submit test functionality
+            document.querySelector('.btn-filled').addEventListener('click', function() {
+                if (this.textContent === 'Submit Test') {
+                    document.querySelector('.results').style.display = 'block';
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
             });
         });
     </script>
