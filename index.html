@@ -5,39 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IELTS Reading Practice Test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
         
         .container {
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            display: none;
         }
         
-        .header {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .welcome-screen {
             text-align: center;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            color: #1a2a6c;
             margin-bottom: 20px;
         }
         
         h1 {
-            color: #2d3e50;
-            margin-bottom: 10px;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: #b21f1f;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            width: 30%;
+            min-width: 250px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 20px;
+            text-align: center;
         }
         
         .test-info {
@@ -46,8 +120,6 @@
             background: #2d3e50;
             color: white;
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
         }
         
         .timer {
@@ -58,46 +130,45 @@
         .instructions {
             background: #e9f5ff;
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
             border-left: 4px solid #3498db;
         }
         
         .content-container {
             display: flex;
             gap: 20px;
-            margin-bottom: 20px;
+            padding: 20px;
+            max-height: 600px;
+            overflow: hidden;
         }
         
-        .passage {
+        .passage-container {
             flex: 1;
             background: white;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            height: 600px;
             overflow-y: auto;
             line-height: 1.8;
+            font-size: 18px;
         }
         
-        .passage h2 {
+        .passage-container h2 {
             color: #2d3e50;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #e0e0e0;
         }
         
-        .questions {
+        .questions-container {
             flex: 1;
             background: white;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            height: 600px;
             overflow-y: auto;
         }
         
-        .questions h2 {
+        .questions-container h2 {
             color: #2d3e50;
             margin-bottom: 20px;
             padding-bottom: 10px;
@@ -117,7 +188,7 @@
         .question-group h3 {
             margin-bottom: 15px;
             color: #2d3e50;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
         .question {
@@ -127,6 +198,7 @@
         .question p {
             margin-bottom: 10px;
             font-weight: 500;
+            font-size: 18px;
         }
         
         .options {
@@ -135,12 +207,13 @@
         }
         
         .option {
-            padding: 10px 15px;
+            padding: 12px 15px;
             background: #f8f9fa;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
+            font-size: 16px;
         }
         
         .option:hover {
@@ -156,46 +229,16 @@
         .controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            background: #2d3e50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .btn:hover {
-            background: #1c2833;
-        }
-        
-        .btn-highlight {
-            background: #3498db;
-        }
-        
-        .btn-highlight:hover {
-            background: #2980b9;
-        }
-        
-        .btn-submit {
-            background: #27ae60;
-        }
-        
-        .btn-submit:hover {
-            background: #219653;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
         }
         
         .footer {
             text-align: center;
-            margin-top: 40px;
+            padding: 20px;
             color: #6c757d;
-            font-size: 0.9rem;
-            padding-top: 20px;
+            background: #f8f9fa;
             border-top: 1px solid #e0e0e0;
         }
         
@@ -209,42 +252,112 @@
             margin: 15px 0;
             color: #2d3e50;
             font-weight: 500;
+            font-size: 18px;
         }
         
         .results {
             background: white;
-            padding: 25px;
+            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 30px;
             display: none;
         }
         
         .score {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #27ae60;
             font-weight: 700;
             margin: 20px 0;
         }
         
-        @media (max-width: 768px) {
+        .band-score {
+            font-size: 2.5rem;
+            color: #1a2a6c;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #dee2e6;
+        }
+        
+        .nav-btn.active {
+            background: #2d3e50;
+            color: white;
+        }
+        
+        .creator {
+            margin-top: 30px;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 1024px) {
             .content-container {
                 flex-direction: column;
             }
             
-            .passage, .questions {
-                height: auto;
+            .passage-container, .questions-container {
                 max-height: 500px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="logo">
+            <i class="fas fa-globe-americas"></i>
+        </div>
+        <h1>IELTS Reading Practice Test</h1>
+        <h2>Prepare for success with our authentic practice materials</h2>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>60 Minute Test</h3>
+                <p>Complete all 40 questions within the time limit</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-book-open"></i>
+                <h3>3 Passages</h3>
+                <p>Authentic reading materials from various sources</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Instant Results</h3>
+                <p>Get your score and IELTS band immediately after completion</p>
+            </div>
+        </div>
+        
+        <button class="btn" onclick="startTest()">Start Test</button>
+        
+        <div class="creator">
+            <p>Created by Mirabbos Mirzakhidov</p>
+            <p>© 2025 IELTS Practice Test</p>
+        </div>
+    </div>
+    
+    <div class="container" id="testContainer">
         <div class="header">
             <h1>IELTS Academic Reading Practice Test</h1>
-            <p>Time: 60 minutes • 40 questions</p>
+            <p>Time: 60 minutes • 40 questions • 3 passages</p>
         </div>
         
         <div class="test-info">
@@ -253,11 +366,17 @@
         </div>
         
         <div class="instructions">
-            <p><strong>INSTRUCTIONS:</strong> Read the passages and answer all questions. Write your answers on the question paper. You have 60 minutes to complete the test.</p>
+            <p><strong>INSTRUCTIONS:</strong> Read the passages and answer all questions. Write your answers on the question paper. You have 60 minutes to complete the test. The test contains three sections with 40 questions.</p>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showPassage(1)">Passage 1</button>
+            <button class="nav-btn" onclick="showPassage(2)">Passage 2</button>
+            <button class="nav-btn" onclick="showPassage(3)">Passage 3</button>
         </div>
         
         <div class="content-container">
-            <div class="passage">
+            <div class="passage-container" id="passage-1">
                 <h2>READING PASSAGE 1: MAKING TIME FOR SCIENCE</h2>
                 <p>Chronobiology might sound a little futuristic – like something from a science fiction novel, perhaps – but it's actually a field of study that concerns one of the oldest processes life on this planet has ever known: short-term rhythms of time and their effect on flora and fauna.</p>
                 
@@ -280,142 +399,407 @@
                 <p>Evenings are important for winding down before sleep; however, dietician Geraldine Georgeou warns that an after-five carbohydrate-fast is more cultural myth than chronobiological demand. This will deprive your body of vital energy needs. Overloading your gut could lead to indigestion, though. Our digestive tracts do not shut down for the night entirely, but their work slows to a crawl as our bodies prepare for sleep. Consuming a modest snack should be entirely sufficient.</p>
             </div>
             
-            <div class="questions">
-                <h2>Questions 1-13</h2>
+            <div class="passage-container" id="passage-2" style="display: none;">
+                <h2>READING PASSAGE 2: THE TRIUNE BRAIN</h2>
+                <p>The first of our three brains to evolve is what scientists call the reptilian cortex. This brain sustains the elementary activities of animal survival such as respiration, adequate rest and a beating heart. We are not required to consciously "think" about these activities. The reptilian cortex also houses the "startle centre", a mechanism that facilitates swift reactions to unexpected occurrences in our surroundings. That panicked lurch you experience when a door slams shut somewhere in the house, or the heightened awareness you feel when a twig cracks in a nearby bush while out on an evening stroll are both examples of the reptilian cortex at work. When it comes to our interaction with others, the reptilian brain offers up only the most basic impulses: aggression, mating, and territorial defence. There is no great difference, in this sense, between a crocodile defending its spot along the river and a turf war between two urban gangs.</p>
                 
-                <div class="question-group">
-                    <h3>Questions 1-7</h3>
-                    <p>Do the following statements agree with the information given in Reading Passage 1?</p>
-                    <p>In boxes 1-7 on your answer sheet, write:</p>
-                    <p><strong>TRUE</strong> if the statement agrees with the information<br>
-                    <strong>FALSE</strong> if the statement contradicts the information<br>
-                    <strong>NOT GIVEN</strong> if there is no information on this</p>
+                <p>Although the lizard may stake a claim to its habitat, it exerts total indifference toward the well-being of its young. Listen to the anguished squeal of a dolphin separated from its pod or witness the sight of elephants mourning their dead, however, and it is clear that a new development is at play. Scientists have identified this as the limbic cortex. Unique to mammals, the limbic cortex impels creatures to nurture their offspring by delivering feelings of tenderness and warmth to the parent when children are nearby. These same sensations also cause mammals to develop various types of social relations and kinship networks. When we are with others of "our kind" – be it at soccer practice, church, school or a nightclub – we experience positive sensations of togetherness, solidarity and comfort. If we spend too long away from these networks, then loneliness sets in and encourages us to seek companionship.</p>
+                
+                <p>Only human capabilities extend far beyond the scope of these two cortexes. Humans eat, sleep and play, but we also speak, plot, rationalise and debate finer points of morality. Our unique abilities are the result of an expansive third brain – the neocortex – which engages with logic, reason and ideas. The power of the neocortex comes from its ability to think beyond the present, concrete moment. While other mammals are mainly restricted to impulsive actions (although some, such as apes, can learn and remember simple lessons), humans can think about the "big picture". We can string together simple lessons (for example, an apple drops downwards from a tree; hurting others causes unhappiness) to develop complex theories of physical or social phenomena (such as the laws of gravity and a concern for human rights).</p>
+                
+                <p>The neocortex is also responsible for the process by which we decide on and commit to particular courses of action. Strung together over time, these choices can accumulate into feats of progress unknown to other animals. Anticipating a better grade on the following morning's exam, a student can ignore the limbic urge to socialise and go to sleep early instead. Over three years, this ongoing sacrifice translates into a first class degree and a scholarship to graduate school; over a lifetime, it can mean ground-breaking contributions to human knowledge and development. The ability to sacrifice our drive for immediate satisfaction in order to benefit later is a product of the neocortex.</p>
+                
+                <p>Understanding the triune brain can help us appreciate the different natures of brain damage and psychological disorders. The most devastating form of brain damage, for example, is a condition in which someone is understood to be brain dead. In this state a person appears merely unconscious – sleeping, perhaps – but this is illusory. Here, the reptilian brain is functioning on autopilot despite the permanent loss of other cortexes.</p>
+                
+                <p>Disturbances to the limbic cortex are registered in a different manner. Pups with limbic damage can move around and feed themselves well enough but do not register the presence of their littermates. Scientists have observed how, after a limbic lobotomy, "one impaired monkey stepped on his outraged peers as if treading on a log or a rock". In our own species, limbic damage is closely related to sociopathic behaviour. Sociopaths in possession of fully-functioning neocortexes are often shrewd and emotionally intelligent people but lack any ability to relate to, empathise with or express concern for others.</p>
+                
+                <p>One of the neurological wonders of history occurred when a railway worker named Phineas Gage survived an incident during which a metal rod skewered his skull, taking a considerable amount of his neocortex with it. Though Gage continued to live and work as before, his fellow employees observed a shift in the equilibrium of his personality. Gage's animal propensities were now sharply pronounced while his intellectual abilities suffered; garrulous or obscene jokes replaced his once quick wit. New findings suggest, however, that Gage managed to soften these abrupt changes over time and rediscover an appropriate social manner. This would indicate that reparative therapy has the potential to help patients with advanced brain trauma to gain an improved quality of life.</p>
+            </div>
+            
+            <div class="passage-container" id="passage-3" style="display: none;">
+                <h2>READING PASSAGE 3: HELIUM'S FUTURE UP IN THE AIR</h2>
+                <p>In recent years we have all been exposed to dire media reports concerning the impending demise of global coal and oil reserves, but the depletion of another key non-renewable resource continues without receiving much press at all. Helium – an inert, odourless, monatomic element known to lay people as the substance that makes balloons float and voices squeak when inhaled – could be gone from this planet within a generation.</p>
+                
+                <p>Helium itself is not rare; there is actually a plentiful supply of it in the cosmos. In fact, 24 per cent of our galaxy's elemental mass consists of helium, which makes it the second most abundant element in our universe. Because of its lightness, however, most helium vanished from our own planet many years ago. Consequently, only a miniscule proportion – 0.00052%, to be exact – remains in earth's atmosphere. Helium is the by-product of millennia of radioactive decay from the elements thorium and uranium. The helium is mostly trapped in subterranean natural gas bunkers and commercially extracted through a method known as fractional distillation.</p>
+                
+                <p>The loss of helium on Earth would affect society greatly. Defying the perception of it as a novelty substance for parties and gimmicks, the element actually has many vital applications in society. Probably the most well known commercial usage is in airships and blimps (non-flammable helium replaced hydrogen as the lifting gas du jour after the Hindenburg catastrophe in 1932, during which an airship burst into flames and crashed to the ground killing some passengers and crew). But helium is also instrumental in deep-sea diving, where it is blended with nitrogen to mitigate the dangers of inhaling ordinary air under high pressure; as a cleaning agent for rocket engines; and, in its most prevalent use, as a coolant for superconducting magnets in hospital MRI (magnetic resonance imaging) scanners.</p>
+                
+                <p>The possibility of losing helium forever poses the threat of a real crisis because its unique qualities are extraordinarily difficult, if not impossible to duplicate (certainly, no biosynthetic ersatz product is close to approaching the point of feasibility for helium, even as similar developments continue apace for oil and coal). Helium is even cheerfully derided as a "loner" element since it does not adhere to other molecules like its cousin, hydrogen. According to Dr. Lee Sobotka, helium is the "most noble of gases, meaning it's very stable and non-reactive for the most part … it has a closed electronic configuration, a very tightly bound atom. It is this covering of its own electrons that prevents combination with other elements". Another important attribute is helium's unique boiling point, which is lower than that for any other element. The worsening global shortage could render millions of dollars of high-value, life-saving equipment totally useless. The dwindling supplies have already resulted in the postponement of research and development projects in physics laboratories and manufacturing plants around the world. There is an enormous supply and demand imbalance partly brought about by the expansion of high-tech manufacturing in Asia.</p>
+                
+                <p>The source of the problem is the Helium Privatisation Act (HPA), an American law passed in 1996 that requires the U.S. National Helium Reserve to liquidate its helium assets by 2015 regardless of the market price. Although intended to settle the original cost of the reserve by a U.S. Congress ignorant of its ramifications, the result of this fire sale is that global helium prices are so artificially deflated that few can be bothered recycling the substance or using it judiciously. Deflated values also mean that natural gas extractors see no reason to capture helium. Much is lost in the process of extraction. As Sobotka notes: "[t]he government had the good vision to store helium, and the question now is: Will the corporations have the vision to capture it when extracting natural gas, and consumers the wisdom to recycle? This takes long-term vision because present market forces are not sufficient to compel prudent practice". For Nobel-prize laureate Robert Richardson, the U.S. government must be prevailed upon to repeal its privatisation policy as the country supplies over 80 per cent of global helium, mostly from the National Helium Reserve. For Richardson, a twenty- to fifty-fold increase in prices would provide incentives to recycle.</p>
+                
+                <p>A number of steps need to be taken in order to avert a costly predicament in the coming decades. Firstly, all existing supplies of helium ought to be conserved and released only by permit, with medical uses receiving precedence over other commercial or recreational demands. Secondly, conservation should be obligatory and enforced by a regulatory agency. At the moment some users, such as hospitals, tend to recycle diligently while others, such as NASA, squander massive amounts of helium. Lastly, research into alternatives to helium must begin in earnest.</p>
+            </div>
+            
+            <div class="questions-container">
+                <div id="questions-1">
+                    <h2>Questions 1-13</h2>
                     
-                    <div class="question">
-                        <p>1. Chronobiology is the study of how living things have evolved over time.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 1, 'FALSE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 1, 'TRUE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 1, 'NOT GIVEN')">NOT GIVEN</div>
+                    <div class="question-group">
+                        <h3>Questions 1-7</h3>
+                        <p>Do the following statements agree with the information given in Reading Passage 1?</p>
+                        <p>In boxes 1-7 on your answer sheet, write:</p>
+                        <p><strong>TRUE</strong> if the statement agrees with the information<br>
+                        <strong>FALSE</strong> if the statement contradicts the information<br>
+                        <strong>NOT GIVEN</strong> if there is no information on this</p>
+                        
+                        <div class="question">
+                            <p>1. Chronobiology is the study of how living things have evolved over time.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 1, 'FALSE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 1, 'TRUE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 1, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>2. The rise and fall of sea levels affects how sea creatures behave.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 2, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 2, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 2, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>3. Most animals are active during the daytime.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 3, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 3, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 3, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>4. Circadian rhythms identify how we do different things on different days.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 4, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 4, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 4, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>5. A 'night person' can still have a healthy circadian rhythm.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 5, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 5, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 5, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>6. New therapies can permanently change circadian rhythms without causing harm.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 6, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 6, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 6, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>7. Naturally-produced vegetables have more nutritional value.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 7, 'TRUE')">TRUE</div>
+                                <div class="option" onclick="selectOption(this, 7, 'FALSE')">FALSE</div>
+                                <div class="option" onclick="selectOption(this, 7, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <p>2. The rise and fall of sea levels affects how sea creatures behave.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 2, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 2, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 2, 'NOT GIVEN')">NOT GIVEN</div>
+                    <div class="question-group">
+                        <h3>Questions 8-13</h3>
+                        <p>Choose the correct letter, A, B, C or D.</p>
+                        
+                        <div class="question">
+                            <p>8. What did researchers identify as the ideal time to wake up in the morning?</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 8, 'A')">A) 6.04</div>
+                                <div class="option" onclick="selectOption(this, 8, 'B')">B) 7.00</div>
+                                <div class="option" onclick="selectOption(this, 8, 'C')">C) 7.22</div>
+                                <div class="option" onclick="selectOption(this, 8, 'D')">D) 7.30</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>3. Most animals are active during the daytime.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 3, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 3, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 3, 'NOT GIVEN')">NOT GIVEN</div>
+                        
+                        <div class="question">
+                            <p>9. In order to lose weight, we should</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 9, 'A')">A) avoid eating breakfast</div>
+                                <div class="option" onclick="selectOption(this, 9, 'B')">B) eat a low carbohydrate breakfast</div>
+                                <div class="option" onclick="selectOption(this, 9, 'C')">C) exercise before breakfast</div>
+                                <div class="option" onclick="selectOption(this, 9, 'D')">D) exercise after breakfast</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>4. Circadian rhythms identify how we do different things on different days.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 4, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 4, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 4, 'NOT GIVEN')">NOT GIVEN</div>
+                        
+                        <div class="question">
+                            <p>10. Which is NOT mentioned as a way to improve supplement absorption?</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 10, 'A')">A) avoiding drinks containing caffeine while taking supplements</div>
+                                <div class="option" onclick="selectOption(this, 10, 'B')">B) taking supplements at breakfast</div>
+                                <div class="option" onclick="selectOption(this, 10, 'C')">C) taking supplements with foods that can dissolve them</div>
+                                <div class="option" onclick="selectOption(this, 10, 'D')">D) storing supplements in a cool, dry environment</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>5. A 'night person' can still have a healthy circadian rhythm.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 5, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 5, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 5, 'NOT GIVEN')">NOT GIVEN</div>
+                        
+                        <div class="question">
+                            <p>11. The best time to stop drinking coffee is</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 11, 'A')">A) mid-afternoon</div>
+                                <div class="option" onclick="selectOption(this, 11, 'B')">B) 10 p.m.</div>
+                                <div class="option" onclick="selectOption(this, 11, 'C')">C) only when feeling anxious</div>
+                                <div class="option" onclick="selectOption(this, 11, 'D')">D) after dinner</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>6. New therapies can permanently change circadian rhythms without causing harm.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 6, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 6, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 6, 'NOT GIVEN')">NOT GIVEN</div>
+                        
+                        <div class="question">
+                            <p>12. In the evening, we should</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 12, 'A')">A) stay away from carbohydrates</div>
+                                <div class="option" onclick="selectOption(this, 12, 'B')">B) stop exercising</div>
+                                <div class="option" onclick="selectOption(this, 12, 'C')">C) eat as much as possible</div>
+                                <div class="option" onclick="selectOption(this, 12, 'D')">D) eat a light meal</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>7. Naturally-produced vegetables have more nutritional value.</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 7, 'TRUE')">TRUE</div>
-                            <div class="option" onclick="selectOption(this, 7, 'FALSE')">FALSE</div>
-                            <div class="option" onclick="selectOption(this, 7, 'NOT GIVEN')">NOT GIVEN</div>
+                        
+                        <div class="question">
+                            <p>13. Which of the following phrases best describes the main aim of Reading Passage 1?</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 13, 'A')">A) to suggest healthier ways of eating, sleeping and exercising</div>
+                                <div class="option" onclick="selectOption(this, 13, 'B')">B) to describe how modern life has made chronobiology largely irrelevant</div>
+                                <div class="option" onclick="selectOption(this, 13, 'C')">C) to introduce chronobiology and describe some practical applications</div>
+                                <div class="option" onclick="selectOption(this, 13, 'D')">D) to plan a daily schedule that can alter our natural chronobiological rhythms</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="question-group">
-                    <h3>Questions 8-13</h3>
-                    <p>Choose the correct letter, A, B, C or D.</p>
+                <div id="questions-2" style="display: none;">
+                    <h2>Questions 14-26</h2>
                     
-                    <div class="question">
-                        <p>8. What did researchers identify as the ideal time to wake up in the morning?</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 8, 'A')">A) 6.04</div>
-                            <div class="option" onclick="selectOption(this, 8, 'B')">B) 7.00</div>
-                            <div class="option" onclick="selectOption(this, 8, 'C')">C) 7.22</div>
-                            <div class="option" onclick="selectOption(this, 8, 'D')">D) 7.30</div>
+                    <div class="question-group">
+                        <h3>Questions 14-22</h3>
+                        <p>Classify the following as typical of:</p>
+                        <p>A) The reptilian cortex<br>
+                        B) The limbic cortex<br>
+                        C) The neocortex</p>
+                        
+                        <div class="question">
+                            <p>14. Giving up short-term happiness for future gains</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 14, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 14, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 14, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>15. Maintaining the bodily functions necessary for life</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 15, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 15, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 15, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>16. Experiencing the pain of losing another</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 16, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 16, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 16, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>17. Forming communities and social groups</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 17, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 17, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 17, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>18. Making a decision and carrying it out</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 18, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 18, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 18, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>19. Guarding areas of land</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 19, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 19, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 19, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>20. Developing explanations for things</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 20, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 20, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 20, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>21. Looking after one's young</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 21, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 21, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 21, 'C')">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>22. Responding quickly to sudden movement and noise</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 22, 'A')">A</div>
+                                <div class="option" onclick="selectOption(this, 22, 'B')">B</div>
+                                <div class="option" onclick="selectOption(this, 22, 'C')">C</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <p>9. In order to lose weight, we should</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 9, 'A')">A) avoid eating breakfast</div>
-                            <div class="option" onclick="selectOption(this, 9, 'B')">B) eat a low carbohydrate breakfast</div>
-                            <div class="option" onclick="selectOption(this, 9, 'C')">C) exercise before breakfast</div>
-                            <div class="option" onclick="selectOption(this, 9, 'D')">D) exercise after breakfast</div>
+                    <div class="question-group">
+                        <h3>Questions 23-26</h3>
+                        <p>Complete the sentences below.</p>
+                        <p>Write <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                        
+                        <div class="question">
+                            <p>23. A person with only a functioning reptilian cortex is known as ...............</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 23)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>24. ............... in humans is associated with limbic disruption.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 24)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>25. An industrial accident caused Phineas Gage to lose part of his ...............</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 25)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>26. After his accident, co-workers noticed an imbalance between Gage's ............... and higher-order thinking.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 26)" placeholder="Type your answer here">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="questions-3" style="display: none;">
+                    <h2>Questions 27-40</h2>
+                    
+                    <div class="question-group">
+                        <h3>Questions 27-31</h3>
+                        <p>Reading Passage 3 has six paragraphs, A-F.</p>
+                        <p>Which paragraph contains the following information?</p>
+                        <p>Write the correct letter, A-F, in boxes 27-31 on your answer sheet.</p>
+                        
+                        <div class="question">
+                            <p>27. A use for helium which makes an activity safer</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 27)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>28. The possibility of creating an alternative to helium</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 28)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>29. A term which describes the process of how helium is taken out of the ground</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 29)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>30. A reason why users of helium do not make efforts to conserve it</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 30)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>31. A contrast between helium's chemical properties and how non-scientists think about it</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 31)" placeholder="Type your answer here">
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <p>10. Which is NOT mentioned as a way to improve supplement absorption?</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 10, 'A')">A) avoiding drinks containing caffeine while taking supplements</div>
-                            <div class="option" onclick="selectOption(this, 10, 'B')">B) taking supplements at breakfast</div>
-                            <div class="option" onclick="selectOption(this, 10, 'C')">C) taking supplements with foods that can dissolve them</div>
-                            <div class="option" onclick="selectOption(this, 10, 'D')">D) storing supplements in a cool, dry environment</div>
+                    <div class="question-group">
+                        <h3>Questions 32-35</h3>
+                        <p>Do the following statements agree with the claims of the writer in Reading Passage 3?</p>
+                        <p>In boxes 32-35 on your answer sheet, write:</p>
+                        <p><strong>YES</strong> if the statement agrees with the claims of the writer<br>
+                        <strong>NO</strong> if the statement contradicts the claims of the writer<br>
+                        <strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</p>
+                        
+                        <div class="question">
+                            <p>32. Helium chooses to be on its own.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 32, 'YES')">YES</div>
+                                <div class="option" onclick="selectOption(this, 32, 'NO')">NO</div>
+                                <div class="option" onclick="selectOption(this, 32, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>33. Helium is a very cold substance.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 33, 'YES')">YES</div>
+                                <div class="option" onclick="selectOption(this, 33, 'NO')">NO</div>
+                                <div class="option" onclick="selectOption(this, 33, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>34. High-tech industries in Asia use more helium than laboratories and manufacturers in other parts of the world.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 34, 'YES')">YES</div>
+                                <div class="option" onclick="selectOption(this, 34, 'NO')">NO</div>
+                                <div class="option" onclick="selectOption(this, 34, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <p>35. The US Congress understood the possible consequences of the HPA.</p>
+                            <div class="options">
+                                <div class="option" onclick="selectOption(this, 35, 'YES')">YES</div>
+                                <div class="option" onclick="selectOption(this, 35, 'NO')">NO</div>
+                                <div class="option" onclick="selectOption(this, 35, 'NOT GIVEN')">NOT GIVEN</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <p>11. The best time to stop drinking coffee is</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 11, 'A')">A) mid-afternoon</div>
-                            <div class="option" onclick="selectOption(this, 11, 'B')">B) 10 p.m.</div>
-                            <div class="option" onclick="selectOption(this, 11, 'C')">C) only when feeling anxious</div>
-                            <div class="option" onclick="selectOption(this, 11, 'D')">D) after dinner</div>
+                    <div class="question-group">
+                        <h3>Questions 36-40</h3>
+                        <p>Complete the summary below.</p>
+                        <p>Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                        
+                        <div class="question">
+                            <p>Sobotka argues that big business and users of helium need to help look after helium stocks because 36 ............... will not be encouraged through buying and selling alone.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 36)" placeholder="Type your answer here">
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>12. In the evening, we should</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 12, 'A')">A) stay away from carbohydrates</div>
-                            <div class="option" onclick="selectOption(this, 12, 'B')">B) stop exercising</div>
-                            <div class="option" onclick="selectOption(this, 12, 'C')">C) eat as much as possible</div>
-                            <div class="option" onclick="selectOption(this, 12, 'D')">D) eat a light meal</div>
+                        
+                        <div class="question">
+                            <p>Richardson believes that the 37 ............... needs to be withdrawn, as the U.S. provides most of the world's helium.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 37)" placeholder="Type your answer here">
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <p>13. Which of the following phrases best describes the main aim of Reading Passage 1?</p>
-                        <div class="options">
-                            <div class="option" onclick="selectOption(this, 13, 'A')">A) to suggest healthier ways of eating, sleeping and exercising</div>
-                            <div class="option" onclick="selectOption(this, 13, 'B')">B) to describe how modern life has made chronobiology largely irrelevant</div>
-                            <div class="option" onclick="selectOption(this, 13, 'C')">C) to introduce chronobiology and describe some practical applications</div>
-                            <div class="option" onclick="selectOption(this, 13, 'D')">D) to plan a daily schedule that can alter our natural chronobiological rhythms</div>
+                        
+                        <div class="question">
+                            <p>He argues that higher costs would mean people have 38 ............... to use the resource many times over.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 38)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>People should need a 39 ............... to access helium that we still have.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 39)" placeholder="Type your answer here">
+                        </div>
+                        
+                        <div class="question">
+                            <p>Furthermore, a 40 ............... should ensure that helium is used carefully.</p>
+                            <input type="text" class="text-answer" oninput="updateTextAnswer(this, 40)" placeholder="Type your answer here">
                         </div>
                     </div>
                 </div>
@@ -427,18 +811,40 @@
             <button class="btn btn-submit" onclick="submitTest()">Submit Answers</button>
         </div>
         
+        <div class="footer">
+            <p>Created by Mirabbos Mirzakhidov • © 2025 IELTS Practice Test</p>
+        </div>
+    </div>
+    
+    <div class="container" id="resultsContainer" style="display: none;">
+        <div class="header">
+            <h1>Your IELTS Test Results</h1>
+            <p>Review your performance and see your estimated band score</p>
+        </div>
+        
         <div class="results" id="results">
-            <h2>Your Test Results</h2>
-            <p>You have completed the practice test. Here are your results:</p>
+            <div class="score">You scored: <span id="correctAnswers">0</span>/40</div>
+            <div class="band-score">IELTS Band: <span id="bandScore">0.0</span></div>
             
-            <div class="score" id="score">0/13</div>
+            <div class="score-interpretation">
+                <h3>What your score means:</h3>
+                <p id="scoreFeedback">Based on your performance, you have demonstrated basic English proficiency.</p>
+            </div>
             
-            <p id="feedback">Well done! You scored 0 out of 13.</p>
+            <div class="score-breakdown">
+                <h3>Score Conversion</h3>
+                <p>35-40 correct answers: IELTS Band 8.0 - 9.0</p>
+                <p>30-34 correct answers: IELTS Band 7.0 - 7.5</p>
+                <p>23-29 correct answers: IELTS Band 6.0 - 6.5</p>
+                <p>16-22 correct answers: IELTS Band 5.0 - 5.5</p>
+                <p>0-15 correct answers: Below IELTS Band 5.0</p>
+            </div>
+            
+            <button class="btn" onclick="location.reload()">Take Test Again</button>
         </div>
         
         <div class="footer">
-            <p>Made by Mirabbos Mirzahidov</p>
-            <p>IELTS Practice Test © 2023</p>
+            <p>Created by Mirabbos Mirzakhidov • © 2025 IELTS Practice Test</p>
         </div>
     </div>
 
@@ -448,6 +854,7 @@
         let timeLeft = 3600; // 60 minutes in seconds
         let timerInterval;
         let isHighlighting = false;
+        let currentPassage = 1;
         
         // Correct answers
         const correctAnswers = {
@@ -463,8 +870,44 @@
             10: 'B',
             11: 'A',
             12: 'D',
-            13: 'C'
+            13: 'C',
+            14: 'C',
+            15: 'A',
+            16: 'B',
+            17: 'B',
+            18: 'C',
+            19: 'A',
+            20: 'C',
+            21: 'B',
+            22: 'A',
+            23: 'brain dead',
+            24: 'sociopathic behaviour',
+            25: 'neocortex',
+            26: 'animal propensities',
+            27: 'C',
+            28: 'D',
+            29: 'B',
+            30: 'E',
+            31: 'A',
+            32: 'YES',
+            33: 'NOT GIVEN',
+            34: 'NOT GIVEN',
+            35: 'NO',
+            36: 'prudent practice',
+            37: 'privatisation policy',
+            38: 'incentives',
+            39: 'permit',
+            40: 'regulatory agency'
         };
+        
+        // Start the test
+        function startTest() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('testContainer').style.display = 'block';
+            
+            // Start the timer
+            timerInterval = setInterval(updateTimer, 1000);
+        }
         
         // Format time for display
         function formatTime(seconds) {
@@ -484,10 +927,22 @@
             }
         }
         
-        // Start the timer when the page loads
-        window.onload = function() {
-            timerInterval = setInterval(updateTimer, 1000);
-        };
+        // Show selected passage and questions
+        function showPassage(passageNum) {
+            // Hide all passages and questions
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`passage-${i}`).style.display = 'none';
+                document.getElementById(`questions-${i}`).style.display = 'none';
+                document.querySelectorAll('.nav-btn')[i-1].classList.remove('active');
+            }
+            
+            // Show selected passage and questions
+            document.getElementById(`passage-${passageNum}`).style.display = 'block';
+            document.getElementById(`questions-${passageNum}`).style.display = 'block';
+            document.querySelectorAll('.nav-btn')[passageNum-1].classList.add('active');
+            
+            currentPassage = passageNum;
+        }
         
         // Select an option
         function selectOption(element, questionNum, answer) {
@@ -505,24 +960,76 @@
             document.getElementById('answerCount').textContent = Object.keys(answers).length;
         }
         
+        // Update text answer
+        function updateTextAnswer(element, questionNum) {
+            answers[questionNum] = element.value;
+            document.getElementById('answerCount').textContent = Object.keys(answers).length;
+        }
+        
         // Toggle highlight mode
         function toggleHighlight() {
             isHighlighting = !isHighlighting;
-            const passage = document.querySelector('.passage');
+            const passage = document.querySelector('.passage-container');
             passage.style.cursor = isHighlighting ? 'url("highlight.cur"), auto' : 'default';
             
             const btn = document.querySelector('.btn-highlight');
             if (isHighlighting) {
                 btn.innerHTML = '<i class="fas fa-highlighter"></i> Highlighting: ON';
-                btn.style.background = '#27ae60';
+                btn.style.background = 'linear-gradient(to right, #27ae60, #2ecc71)';
             } else {
                 btn.innerHTML = '<i class="fas fa-highlighter"></i> Toggle Highlight';
-                btn.style.background = '#3498db';
+                btn.style.background = 'linear-gradient(to right, #1a2a6c, #b21f1f)';
+            }
+        }
+        
+        // Submit the test
+        function submitTest() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            for (const question in answers) {
+                if (answers[question].toString().toLowerCase() === correctAnswers[question].toString().toLowerCase()) {
+                    score++;
+                }
+            }
+            
+            // Calculate band score
+            let bandScore = 0;
+            if (score >= 39) bandScore = 9.0;
+            else if (score >= 37) bandScore = 8.5;
+            else if (score >= 35) bandScore = 8.0;
+            else if (score >= 33) bandScore = 7.5;
+            else if (score >= 30) bandScore = 7.0;
+            else if (score >= 27) bandScore = 6.5;
+            else if (score >= 23) bandScore = 6.0;
+            else if (score >= 19) bandScore = 5.5;
+            else if (score >= 15) bandScore = 5.0;
+            else if (score >= 13) bandScore = 4.5;
+            else if (score >= 10) bandScore = 4.0;
+            else bandScore = 0;
+            
+            // Show results
+            document.getElementById('testContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            document.getElementById('correctAnswers').textContent = score;
+            document.getElementById('bandScore').textContent = bandScore.toFixed(1);
+            
+            // Provide feedback based on score
+            if (score >= 30) {
+                document.getElementById('scoreFeedback').textContent = "Excellent! You have demonstrated a strong command of English reading skills suitable for academic environments.";
+            } else if (score >= 23) {
+                document.getElementById('scoreFeedback').textContent = "Good job! You have shown competence in English reading skills with room for improvement.";
+            } else if (score >= 15) {
+                document.getElementById('scoreFeedback').textContent = "You have basic English reading skills but need more practice to reach academic proficiency.";
+            } else {
+                document.getElementById('scoreFeedback').textContent = "You need to develop your English reading skills further. Regular practice with authentic materials is recommended.";
             }
         }
         
         // Enable text highlighting
-        document.querySelector('.passage').addEventListener('mouseup', function() {
+        document.addEventListener('mouseup', function() {
             if (isHighlighting) {
                 const selection = window.getSelection();
                 if (selection.toString().length > 0) {
@@ -535,42 +1042,6 @@
                 }
             }
         });
-        
-        // Submit the test
-        function submitTest() {
-            clearInterval(timerInterval);
-            
-            // Calculate score
-            let score = 0;
-            for (const question in answers) {
-                if (answers[question] === correctAnswers[question]) {
-                    score++;
-                }
-            }
-            
-            // Show results
-            document.getElementById('score').textContent = `${score}/13`;
-            
-            // Provide feedback based on score
-            if (score >= 10) {
-                document.getElementById('feedback').textContent = "Excellent! You have a good understanding of the reading content.";
-            } else if (score >= 7) {
-                document.getElementById('feedback').textContent = "Good effort! With more practice, you'll improve your reading skills.";
-            } else {
-                document.getElementById('feedback').textContent = "Keep practicing! Try reading more English materials regularly.";
-            }
-            
-            document.getElementById('results').style.display = 'block';
-            
-            // Disable further answering
-            const options = document.querySelectorAll('.option');
-            options.forEach(opt => opt.style.pointerEvents = 'none');
-            
-            document.querySelector('.btn-submit').disabled = true;
-            
-            // Scroll to results
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-        }
     </script>
 </body>
 </html>
